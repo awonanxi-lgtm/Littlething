@@ -58,41 +58,33 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
     width: 100%;
+    padding: 32px 0 24px;
   }
   .egg-emoji {
-    font-size: 110px;
+    font-size: 130px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.15s;
     animation: eggWobble 1.2s infinite ease-in-out;
-    filter: drop-shadow(0 12px 18px rgba(0,0,0,0.1));
+    filter: drop-shadow(0 16px 24px rgba(0,0,0,0.12));
+    line-height: 1;
   }
-  .egg-emoji:active {
-    transform: scale(0.94);
-  }
+  .egg-emoji:active { transform: scale(0.92) !important; }
   @keyframes eggWobble {
     0%, 100% { transform: rotate(-5deg); }
     50% { transform: rotate(6deg); }
   }
   .egg-hint {
-    background: #f5e6da;
+    background: linear-gradient(135deg, #ff7f5c, #ffb347);
     border-radius: 60px;
-    padding: 8px 20px;
-    font-weight: 800;
-    font-size: 1rem;
-    color: #ff7f5c;
+    padding: 10px 26px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    color: white;
     letter-spacing: 0.5px;
     text-align: center;
-    box-shadow: inset 0 -1px 0 #ffe0cc, 0 4px 8px rgba(0,0,0,0.02);
-  }
-  .simple-note {
-    font-size: 0.85rem;
-    color: #b09080;
-    background: #fff4ed;
-    padding: 6px 14px;
-    border-radius: 30px;
-    display: inline-block;
+    box-shadow: 0 6px 16px rgba(255,127,92,0.3);
   }
 
   /* ---------- 宠物主界面 (孵化后) ---------- */
@@ -309,76 +301,126 @@
   .feed-btn { background: linear-gradient(135deg, #7ec8e3, #5ba8c9); }
   .play-btn { background: linear-gradient(135deg, #b8f5a0, #60c840); color: #2a5a18; }
 
-  /* 对话条 */
+  /* talk area */
   .talk-area {
     display: flex;
     gap: 8px;
     width: 100%;
   }
-  #talk-input {
+  #talkInput {
     flex: 1;
-    background: #f5e6da;
+    background: #fffaf5;
     border: 2px solid #eeddd2;
-    border-radius: 30px;
+    border-radius: 20px;
     padding: 10px 16px;
     font-family: 'Nunito', sans-serif;
     outline: none;
     font-size: 0.85rem;
+    color: #3a2e2e;
+    transition: border-color 0.2s;
   }
-  #talk-input:focus { border-color: #ffb347; }
-  #talk-send {
-    background: #ff7f5c;
+  #talkInput:focus { border-color: #ffb347; }
+  #talkInput::placeholder { color: #c0a890; }
+  #talkSendBtn {
+    background: linear-gradient(135deg, #ff7f5c, #ff5a30);
     border: none;
-    border-radius: 40px;
-    padding: 0 18px;
+    border-radius: 20px;
+    padding: 10px 18px;
     font-family: 'Fredoka One', cursive;
     font-size: 0.9rem;
     color: white;
     cursor: pointer;
+    box-shadow: 0 3px 8px rgba(255,127,92,0.3);
+    transition: transform 0.1s;
+    white-space: nowrap;
   }
+  #talkSendBtn:active { transform: scale(0.96); }
 
-  /* API 区块 全局可用 */
+  /* ── API panel — polished ── */
   .api-panel {
-    margin-top: 10px;
-    border-top: 2px dashed #eeddd2;
+    margin-top: 6px;
+    border-top: 1.5px dashed #eeddd2;
     padding-top: 14px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
   .api-title {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     font-weight: 800;
     color: #b09080;
-    letter-spacing: 0.05em;
-    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .api-title span {
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    color: #c0a890;
   }
   .api-row {
     display: flex;
     gap: 8px;
-    margin-bottom: 8px;
+    align-items: center;
   }
-  .api-select, .api-key-input {
+  .api-select {
     flex: 1;
-    background: #f5e6da;
+    background: #fffaf5;
     border: 2px solid #eeddd2;
-    border-radius: 28px;
-    padding: 6px 12px;
-    font-size: 0.8rem;
+    border-radius: 16px;
+    padding: 8px 12px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    color: #3a2e2e;
     outline: none;
-  }
-  .api-save {
-    background: #ffb347;
-    border: none;
-    border-radius: 30px;
-    padding: 6px 14px;
-    font-weight: bold;
     cursor: pointer;
+    transition: border-color 0.2s;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b09080' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 30px;
   }
+  .api-select:focus { border-color: #ffb347; }
+  .api-key-input {
+    flex: 1;
+    background: #fffaf5;
+    border: 2px solid #eeddd2;
+    border-radius: 16px;
+    padding: 8px 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    color: #3a2e2e;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .api-key-input:focus { border-color: #ffb347; }
+  .api-key-input::placeholder { color: #c0a890; }
+  .api-save {
+    background: linear-gradient(135deg, #ffb347, #ff9020);
+    border: none;
+    border-radius: 16px;
+    padding: 8px 16px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 0.9rem;
+    color: white;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 3px 8px rgba(255,179,71,0.3);
+    transition: transform 0.1s;
+  }
+  .api-save:active { transform: scale(0.96); }
   .api-status {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     text-align: center;
     color: #b09080;
+    padding: 4px 0;
   }
-  .api-status.ok { color: #60c840; font-weight: bold; }
+  .api-status.ok {
+    color: #40a820;
+    font-weight: 700;
+  }
 
   /* 结束界面 (自由/丢失) */
   .end-overlay {
@@ -429,15 +471,34 @@
 </head>
 <body>
 <h1>🐾 Buddy</h1>
-<div class="sub">a tiny friend, full of heart</div>
+<div class="sub">a tiny friend, full of heart ✨</div>
 <div class="card">
 
   <!-- 蛋界面 (未孵化) -->
   <div id="eggScreen">
     <div class="egg-container">
       <div class="egg-emoji" id="eggEmoji">🥚</div>
-      <div class="egg-hint">✨ Tap it to hatch your egg! ✨</div>
-      <div class="simple-note">💡 click the egg or any button after hatching</div>
+      <div class="egg-hint">✨ Tap to hatch! ✨</div>
+      <button onclick="buildLibrary();document.getElementById('libraryModal').style.display='flex';"
+        style="background:none;border:none;font-size:0.78rem;color:#c0a890;cursor:pointer;
+        font-family:'Nunito',sans-serif;text-decoration:underline;text-underline-offset:3px;
+        padding:4px 0;margin-top:4px;">📖 Pokédex</button>
+    </div>
+  </div>
+
+  <!-- Pokédex Modal -->
+  <div id="libraryModal" style="display:none;position:fixed;inset:0;background:rgba(38,28,28,0.6);
+    z-index:100;align-items:center;justify-content:center;padding:16px;">
+    <div style="background:#fff;border-radius:28px;padding:20px 16px 24px;max-width:400px;width:100%;
+      max-height:90vh;overflow-y:auto;box-shadow:0 24px 48px rgba(0,0,0,0.25);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+        <div style="font-family:'Fredoka One',cursive;font-size:1.4rem;color:#ff7f5c;">📖 Pokédex</div>
+        <button id="closeLibrary" style="background:#f5e6da;border:none;border-radius:50%;width:32px;
+          height:32px;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>
+      </div>
+      <div id="libraryCount" style="font-size:0.78rem;color:#b09080;margin-bottom:14px;font-weight:700;">
+        0 / 18 discovered</div>
+      <div id="libraryGrid" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;"></div>
     </div>
   </div>
 
@@ -445,6 +506,13 @@
   <div id="petScreen" style="display: none;">
     <div class="pet-ui">
       <!-- 名字行 -->
+
+      <div style="display:flex;justify-content:flex-end;width:100%;margin-bottom:-6px;">
+        <button onclick="buildLibrary();document.getElementById('libraryModal').style.display='flex';"
+          style="background:none;border:none;font-size:0.75rem;color:#c0a890;cursor:pointer;
+          font-family:'Nunito',sans-serif;text-decoration:underline;text-underline-offset:3px;">
+          📖 Pokédex</button>
+      </div>
       <div class="name-row" id="nameRow">
         <span id="pet-name-display">???</span>
         <button class="edit-name-btn" id="editNameBtn">✏️</button>
@@ -465,6 +533,23 @@
       <!-- 对话气泡 -->
       <div class="speech" id="speechBubble">💬 Say something...</div>
 
+      <!-- ✨ Free banner — sits above stats and buttons so it's unmissable -->
+      <div id="freeBanner" style="display:none; flex-direction:column; align-items:center; gap:10px;
+        background:#f0fff4; border:2.5px solid #60c840; border-radius:24px;
+        padding:16px 14px; width:100%; text-align:center;">
+        <div style="font-family:'Fredoka One',cursive; font-size:1rem; color:#40a820;">✨ A stat hit 100!</div>
+        <div id="freeBannerEmoji" style="line-height:1;"></div>
+        <div id="freeBannerMsg" style="font-size:0.82rem; color:#4a7a4a; line-height:1.5;"></div>
+        <div style="display:flex; gap:10px; width:100%; justify-content:center;">
+          <button id="btnSetFree" style="background:linear-gradient(135deg,#60c840,#40a820);color:#fff;
+            border:none;border-radius:30px;padding:10px 20px;font-family:'Fredoka One',cursive;
+            font-size:0.95rem;cursor:pointer;box-shadow:0 4px 12px rgba(96,200,64,0.35);">Set Free 🕊️</button>
+          <button id="btnKeepGoing" style="background:#fff;color:#3a7a3a;
+            border:2px solid #60c840;border-radius:30px;padding:10px 20px;
+            font-family:'Fredoka One',cursive;font-size:0.95rem;cursor:pointer;">Keep Going 💪</button>
+        </div>
+      </div>
+
       <!-- 五维属性 -->
       <div class="stat-grid" id="statsGrid"></div>
 
@@ -481,6 +566,7 @@
         <button id="talkSendBtn">Send</button>
       </div>
       <div id="talkLoading" style="display:none; font-size:0.7rem; color:#b09080;">✨ thinking...</div>
+
     </div>
   </div>
 
@@ -491,18 +577,26 @@
       <div class="end-title" style="color:#60c840;">Set Free! 🕊️</div>
       <div id="freeMessage" class="speech" style="background:#e8f5e8;">Buddy reached the stars...</div>
       <button class="reset-btn" id="resetFromFree">Start a new egg 🥚</button>
+      <button id="libraryBtnEnd" onclick="buildLibrary();document.getElementById('libraryModal').style.display='flex';"
+        style="background:none;border:1.5px solid #c0e8a0;border-radius:30px;padding:7px 18px;
+        font-family:'Nunito',sans-serif;font-size:0.82rem;color:#408040;cursor:pointer;margin-top:2px;">
+        📖 View all species you've met</button>
     </div>
     <div class="end-overlay" id="endLostScreen">
       <div class="end-emoji-big" id="lostEmoji">💔</div>
       <div class="end-title" style="color:#ff5050;">Lost & gone...</div>
       <div id="lostMessage" class="speech" style="background:#ffe0dc;">Your buddy wandered away</div>
       <button class="reset-btn" id="resetFromLost">Hatch a new egg 🥚</button>
+      <button onclick="buildLibrary();document.getElementById('libraryModal').style.display='flex';"
+        style="background:none;border:1.5px solid #e0a0a0;border-radius:30px;padding:7px 18px;
+        font-family:'Nunito',sans-serif;font-size:0.82rem;color:#804040;cursor:pointer;margin-top:2px;">
+        📖 View all species you've met</button>
     </div>
   </div>
 
   <!-- API 设置 (全局，蛋界面和宠物界面都可见) -->
   <div class="api-panel" id="apiGlobalPanel">
-    <div class="api-title">🔑 API (optional – unlocks smart chat)</div>
+    <div class="api-title">🔑 API Settings <span>— optional, unlocks AI chat</span></div>
     <div class="api-row">
       <select id="apiProviderSelect" class="api-select">
         <option value="anthropic">Anthropic (Claude)</option>
@@ -525,22 +619,516 @@
 </div>
 
 <script>
-  // ---------- 物种库 (来自 index.html，确保图文一致) ----------
+  // ── SPECIES LIST — all pixel art ──
   const SPECIES = [
-    { emoji:'🦆', name:'Duck',      rarity:'common',    color:'#ffe066' },
-    { emoji:'🐱', name:'Cat',       rarity:'common',    color:'#ffb347' },
-    { emoji:'🐸', name:'Frog',      rarity:'common',    color:'#b8f5a0' },
-    { emoji:'🐹', name:'Hamster',   rarity:'common',    color:'#ffcba4' },
-    { emoji:'🐧', name:'Penguin',   rarity:'rare',      color:'#7ec8e3' },
-    { emoji:'🦉', name:'Owl',       rarity:'rare',      color:'#c8b8f0' },
-    { emoji:'🐙', name:'Octopus',   rarity:'rare',      color:'#ff9fd4' },
-    { emoji:'🦋', name:'Butterfly', rarity:'rare',      color:'#ffe0f0' },
-    { emoji:'🐉', name:'Dragon',    rarity:'epic',      color:'#ff7f5c' },
-    { emoji:'🦊', name:'Fox',       rarity:'epic',      color:'#ffb347' },
-    { emoji:'🦑', name:'Squid',     rarity:'epic',      color:'#c8a8f0' },
-    { emoji:'🦄', name:'Unicorn',   rarity:'legendary', color:'#f0c0ff' },
-    { emoji:'👽', name:'Alien',     rarity:'legendary', color:'#a8f0c8' }
+    // common
+    { pixel:'duck',      name:'Duck',      rarity:'common',    color:'#ffe87a' },
+    { pixel:'cat',       name:'Cat',       rarity:'common',    color:'#ffb347' },
+    { pixel:'frog',      name:'Frog',      rarity:'common',    color:'#b8f5a0' },
+    { pixel:'hamster',   name:'Hamster',   rarity:'common',    color:'#ffcba4' },
+    { pixel:'dino',      name:'Dino',      rarity:'common',    color:'#c8a8f0' },
+    { pixel:'slime',     name:'Slime',     rarity:'common',    color:'#a0f8b0' },
+    // rare
+    { pixel:'ghost',     name:'Ghost',     rarity:'rare',      color:'#d0e8ff' },
+    { pixel:'penguin',   name:'Penguin',   rarity:'rare',      color:'#7ec8e3' },
+    { pixel:'owl',       name:'Owl',       rarity:'rare',      color:'#c8b8f0' },
+    { pixel:'octopus',   name:'Octopus',   rarity:'rare',      color:'#ff9fd4' },
+    { pixel:'butterfly', name:'Butterfly', rarity:'rare',      color:'#b8d8ff' },
+    // epic
+    { pixel:'robot',     name:'Robot',     rarity:'epic',      color:'#b0c8e8' },
+    { pixel:'dragon',    name:'Dragon',    rarity:'epic',      color:'#ff7f5c' },
+    { pixel:'fox',       name:'Fox',       rarity:'epic',      color:'#ffb347' },
+    { pixel:'squid',     name:'Squid',     rarity:'epic',      color:'#c8a8f0' },
+    // legendary
+    { pixel:'phoenix',   name:'Phoenix',   rarity:'legendary', color:'#ffd080' },
+    { pixel:'alien',     name:'Alien',     rarity:'legendary', color:'#a8f0c8' },
+    { pixel:'unicorn',   name:'Unicorn',   rarity:'legendary', color:'#f0c0ff' },
   ];
+
+  // ── PIXEL ART ENGINE ──
+  // 20x20 sprites. 'A' = bg/transparent in each palette.
+  const PIXEL_MAPS = {
+
+    // ── FOX (user-designed) ──
+    fox: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAEAAAAAAAAEAAAAAAA',
+      'AAEEEAAAAAAEEEAAAAAA',
+      'AAECFAAAAAEFFEAAAAAA',
+      'AAEFCEEEEEFCFEAAAAAA',
+      'AAEFCFFFFCCCFEAAAAAA',
+      'AAEFCCCCCCCCFEAAAAAA',
+      'AAECCCCCCCCCFEAAAABA',
+      'AAECECCCCECCFEAAABAE',
+      'AECCECCCCEDCDFEABAAE',
+      'EECDAAFFAAADCFEEDAAE',
+      'ABFAAAAAAAAAFAADDDAE',
+      'AAABBBBBBBBBAFFCDDDE',
+      'AAAAEAAAAACCCCFCCDEE',
+      'AAAAEDAAADCCCDFCCCEA',
+      'AAAAEDDADCCCCDFDCFAA',
+      'AAAAECDDCCCCCCECFAAA',
+      'AAAAEFEEFCEECFEEAAAA',
+      'AAAAEEAAEEEEEEBAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── DUCK ──
+    duck: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAABBBBBAAAAAAAAA',
+      'AAAABBBBBBBBAAAAAAAA',
+      'AAABBBBBBBBBBAAAAAAA',
+      'AAABBBBCBBBBBAAAAAAA',
+      'AAABBBBBBBBBBBAAAABB',
+      'AAABBBBBBBBBBBBAAABB',
+      'AAADBBBBBBBBBBBAABBB',
+      'AAADDBBBBBBBBBBBBBBB',
+      'AAAADDBBBBBBBBBDDBBB',
+      'AAAAADDBBBDBBBBDDBBB',
+      'AAAAAADDBBBBBBDDDAAA',
+      'AAAAAAADDDDDDDDDAAAA',
+      'AAAAAAAAADDDDDAAAAAA',
+      'AAAAAAAAAADDDDAAAAAA',
+      'AAAAAAAAAAAADDDAAAAA',
+      'AAAAAAAAAAAAAADDDAAA',
+      'AAAAAAAAAAAAAAADDDAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── CAT ──
+    cat: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AABBAAAAAAAAAAABBAAA',
+      'ABBBBAAAAAAAAABBBBAA',
+      'ABCCBAAAAAAAAABCCBAA',
+      'ABBBBBBBBBBBBBBBBBA A',
+      'AABBBBBBBBBBBBBBBAA',
+      'AABBBDBBBBBBDBBBBAA',
+      'AAABBDDBBBBDDBBBAA A',
+      'AAABBBBBBBBBBBBBAAAA',
+      'AAABBBBBEBBBBBBBAAAA',
+      'AAABBBBBBBBBBBBAAAAA',
+      'AAABBBBBBBBBBBBBAAAA',
+      'AAAABBBBBBBBBBBBAAAA',
+      'AAAABBBBBBBBBBBBAAAA',
+      'AAAAABBBBBBBBBBAAAAA',
+      'AAAAAABBBBBBBAAAAAAA',
+      'AAAAAAAABBBBAAAAAAAA',
+      'AAAAAAAAAABBBBBBAAAA',
+      'AAAAAAAAAAABBBBAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── FROG ──
+    frog: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAABBBBAAAAAAABBBAAA',
+      'AABCCCBAAAAAABCCCBAA',
+      'AABCCCBAAAAAABCCCBAA',
+      'AABBBBBBBBBBBBBBBBAA',
+      'AABBBBBBBBBBBBBBBBA A',
+      'ABBBBDBBBBBBDBBBBBBA',
+      'ABBBBBBBBBBBBBBBBBBA',
+      'ABBBBEBBBBBBEBBBBBBA',
+      'ABBBBBBBBBBBBBBBBBA A',
+      'AABBBBBBBBBBBBBBBAA A',
+      'AAABBBBBBBBBBBBBAAA A',
+      'AAAAABBBBBBBBBAAAAA A',
+      'AAAAAAABBBBBAAAAAAA A',
+      'AAAAAAAABBBAAAAAAAAA',
+      'AAAABBBBBBBBBBBAAAAA',
+      'AAABBBBBAAABBBBBAAAA',
+      'AAABBBAAAAAAAABBBAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── HAMSTER ──
+    hamster: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAABBBBBBBBBBBAAAAA',
+      'AAABBBBBBBBBBBBBAAAA',
+      'AABBBBBBBBBBBBBBBAA A',
+      'ABBBBBBBBBBBBBBBBBBA',
+      'ABBBBCBBBBBBBCBBBBBA',
+      'ABBBBBBBBBBBBBBBBBBA',
+      'ABBBBBDBBBBBBDBBBBA A',
+      'ABBBBBBBBBBBBBBBBBBA',
+      'ABBBBBBBBEBBBBBBBBA A',
+      'AABBBBBBBBBBBBBBBAA A',
+      'AAABBBBBBBBBBBBBAAA A',
+      'AAABBBBBBBBBBBBBAAAA',
+      'AAABBBBBFFFBBBBBAAAA',
+      'AAABBBBBFFFBBBBBAAAA',
+      'AAAABBBBBBBBBBBAAAAA',
+      'AAAAAAABBBBBAAAAAAA A',
+      'AAAAAAAABBBAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── DINO (purple) ──
+    dino: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAABAAAAAAAAAAAAAA A',
+      'AAABABAAAAAAAAAAAA AA',
+      'AABABBBAAAAAAAAAAAAA',
+      'AABBBBBBBBBBBBBAAAAA',
+      'ABBBBBBBBBBBBBBAAAAA',
+      'ABBBBBCBBBBBBBBBAAAA',
+      'ABBBBBBBBBBBBBBBAAAA',
+      'ABBBBBBBBBBBBBBBAAAA',
+      'AABBBBBBBBBBBBBAAAAA',
+      'AAABBBBBBBBBBBBAAAAA',
+      'AAAABBBBBBBBBBBAAAAA',
+      'AAAABBBBBBBBBBB AAAAA',
+      'AAAABBBBBBBBBBBBAAAA',
+      'AAAABBBBBBBBBBBBAAAA',
+      'AAAABBBBBBBBBBBBAAAA',
+      'AAAABBBBAAAABBBBAAAA',
+      'AAAABBB AAAAA BBBAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── SLIME ──
+    slime: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAABBBBBBAAAAAAA',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AABBBBBCBBBBBCBBBBAA',
+      'AABBBBBBBBBBBBBBBBA A',
+      'AABBBBBDBBBBBBBBBBAA',
+      'AABBBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAAABBBBBBBBBBBBAA A',
+      'AAAAAABBBBBBBBBBBAA A',
+      'AAAAAAABBBBBBBBBAA AA',
+      'AAAAAAAAABBBBBBAAA AA',
+      'AAAAAAAAAAAABBAAAAA A',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── GHOST ──
+    ghost: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAABBBBBAAAAAAAAA',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAABBBBBBBBBBBBBAAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBCBBBBCBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBBAAAABBBBAAABAA',
+      'AAABBBAAAAAABBBAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── PENGUIN ──
+    penguin: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAABBBBBAAAAAAAAA',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAABBBBBCCCBBBBBBBAA',
+      'AAABBBCCCCCCCBBBBBAA',
+      'AAABBBCCCCCCCBBBBBAA',
+      'AAABBBBCCCCCBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBDBBBBBBDBBBBAA',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAAEBBBBBBBBBBBBBEAA',
+      'AAAEEBBBBBBBBBBEEAAA',
+      'AAAAEEEEEEEEEEEEAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── OWL ──
+    owl: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAABBBBBBBBBBAAAAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAABBBCBBBBBBBCBBBA A',
+      'AAABBCCCBBBBBBCCCBAA',
+      'AAABBCCCBBBBBBCCCBAA',
+      'AAABBBCBBBBBBBCBBBA A',
+      'AAABBBBBBBDBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAAEBBBBBBBBBBBBBEAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAAABBBBBBBBBBBBAA A',
+      'AAAAAABBBBBBBBBBAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── OCTOPUS ──
+    octopus: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAABBBBBBAAAAAAA',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAABBBBBCBBBBCBBBBA A',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAABBBABBBBBBABBBBAA',
+      'AAABBBAABBBBBAABBBA A',
+      'AAABBBAABBBBBAABBBA A',
+      'AAAABBBAABBBBAABBBA A',
+      'AAAABBBAAABBBAABBBAA',
+      'AAAAABBBAAABBBAABBAA',
+      'AAAAAABBBAAABBBABBAA',
+      'AAAAAAABBBAAABBBAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── BUTTERFLY (blue) ──
+    butterfly: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAABBBBBAAAAAAAAAA AA',
+      'AABBBBBBBAAAAAAAAAAA',
+      'ABBBBBBBBBAAAAAAAAAA',
+      'ABBBBBBBBBBAAAAAAAAA',
+      'ABBBBBBBBBBBAAAAAAAA',
+      'AABBBBBBBBBBBAAAAAAA',
+      'AAABBBBBBCBBBBBBAAAA',
+      'AAAABBBBBCBBBBBBBBAA',
+      'AAAAABBBBCBBBBBBBBBA',
+      'AAAAAABBBBBBBBBBBBBA',
+      'AAAAAAABBBBBBBBBBBA A',
+      'AAAAAAAABBBBBBBBBAA A',
+      'AAAAAAAAABBBBBBBBAA A',
+      'AAAAAAAAABBBBBBBAA AA',
+      'AAAAAAAAAABBBBBBAAAA',
+      'AAAAAAAAAAAAABBBAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── ROBOT ──
+    robot: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAABBBAAAAAAAAA',
+      'AAAAAAABABBAAAAAAAAA',
+      'AAAAAABBBBBBBBBBAAAA',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAABBBCCCCCCCBBBAA A',
+      'AAAABBBCCCCCCCBBBAA A',
+      'AAABBBBBCCCCCBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBDBBBBDBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAAABBBBBBBBBBBBAAAA',
+      'AAABBBBAAAAAAABBBBAA',
+      'AAABBBAAAAAAAAABBBAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── DRAGON ──
+    dragon: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAABAAAAAAAAAAA',
+      'AAAAAAABABAAAAAAAAAA',
+      'AAAAAABBBBBBBAAAAAAAA',
+      'AAAABBBBCBBBBBBBAAAA',
+      'AAABBBBBBBBBBBBBBAAA',
+      'AABBBBBBBBBBBBBBBBA A',
+      'ABBBBBBBDBBBBBBBBBA A',
+      'ABBBBBBBBBBBBBBBBBA A',
+      'ABBBBBBBBBBBBBBBBBBA',
+      'AABBBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBAAA',
+      'AAABBBBBBBBBBBBBBAAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAAAABBBBBBBBBBAAAA',
+      'AAAAAAABBBBBBBBAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── SQUID ──
+    squid: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAABBBBBBAAAAAA A',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAABBBBBCBBBBCBBBBAA',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAAAABBBBBBBBBBAAAA',
+      'AAAAAABBBBBBBBBAAAAA',
+      'AAAAAABBBBBBBBBAAAAA',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAABBBAAAABBBBBBAAA',
+      'AAABBBAAAAABBBBBBAAA',
+      'AAABBBAAAAAABBBBBAAA',
+      'AAABBBAAAAAAABBBBAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── PHOENIX ──
+    phoenix: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAABAAAAAAAAAA',
+      'AAAAAAABABAAAAAAAAAA',
+      'AAAAAABBBBBAAAAAAAA A',
+      'AABBBBBBBBBBBBBBBAA A',
+      'ABBBBBBBBBBBBBBBBBAA',
+      'ABBBBBCBBBBBBCBBBBBA',
+      'ABBBBBBBBBBBBBBBBBBA',
+      'ABBBBBBBBBBBBBBBBBBA',
+      'AABBBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBAAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAABBBBDBBBBDBBBBAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAAAABBBBBBBBBBAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── ALIEN ──
+    alien: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAABAAAAAABAAAAAAA',
+      'AAAABABAAAAABABAAAAA',
+      'AAAABBBBBBBBBBBAAAAA',
+      'AAABBBBBBBBBBBBBAAAA',
+      'AABBBBBCBBBBCBBBBBAA',
+      'AABBBBBBBBBBBBBBBBA A',
+      'AABBBBBBBBBBBBBBBBA A',
+      'AABBBBBBBBBBBBBBBBA A',
+      'AABBBBBBBBBBBBBBBBA A',
+      'AABBBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAABBBBBBBBBBBBAAAA',
+      'AAAAAABBBBBBBBBAAAAA',
+      'AAAAAAABBBBBBBAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+
+    // ── UNICORN ──
+    unicorn: [
+      'AAAAAAAAAAAAAAAAAAAA',
+      'AAAAAAAAABAAAAAAAAAA',
+      'AAAAAAAABABAAAAAAAAAA',
+      'AAAAAAABABBBAAAAAAAA',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAABBBBBCBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBAA',
+      'AAABBBBBBBBBBBBBBBA A',
+      'AAAABBBBBBBBBBBBBAA A',
+      'AAAAABBBBBBBBBBBAAAA',
+      'AAAAAAAAAAAAAAAAAAAA',
+    ],
+  };
+
+  const PALETTES = {
+    fox:       { A:'transparent', B:'#605c5a', C:'#ce4b22', D:'#dc6743', E:'#351f19', F:'#772911' },
+    duck:      { A:'transparent', B:'#ffe85a', C:'#ff9020', D:'#c8b020' },
+    cat:       { A:'transparent', B:'#ffe085', C:'#ffb347', D:'#1a1a1a', E:'#ffa0b0' },
+    frog:      { A:'transparent', B:'#68c848', C:'#1a1a1a', D:'#a8e880', E:'#2a8828' },
+    hamster:   { A:'transparent', B:'#ffcba4', C:'#1a1a1a', D:'#1a1a1a', E:'#ff9090', F:'#ffb080' },
+    dino:      { A:'transparent', B:'#c080f0', C:'#1a1a1a', D:'#8040c0' },
+    slime:     { A:'transparent', B:'#58d878', C:'#1a1a1a', D:'#3ab858' },
+    ghost:     { A:'transparent', B:'#ddeeff', C:'#1a1a88' },
+    penguin:   { A:'transparent', B:'#1a1a2a', C:'#ffffff', D:'#1a1a1a', E:'#ff9020' },
+    owl:       { A:'transparent', B:'#c8a060', C:'#1a1a1a', D:'#ff9020', E:'#805020' },
+    octopus:   { A:'transparent', B:'#ff80b0', C:'#1a1a1a' },
+    butterfly: { A:'transparent', B:'#4878d8', C:'#1a1a1a' },
+    robot:     { A:'transparent', B:'#7090b8', C:'#a8d4f8', D:'#ff4040' },
+    dragon:    { A:'transparent', B:'#e05030', C:'#ff8040', D:'#1a1a1a' },
+    squid:     { A:'transparent', B:'#a060e0', C:'#1a1a1a' },
+    phoenix:   { A:'transparent', B:'#ff9820', C:'#ffd040', D:'#ff4000' },
+    alien:     { A:'transparent', B:'#78d898', C:'#1a6040' },
+    unicorn:   { A:'transparent', B:'#e8a0f8', C:'#1a1a1a' },
+  };
+
+  function renderPixelArt(key, size) {
+    const rows = PIXEL_MAPS[key];
+    const palette = PALETTES[key];
+    if (!rows || !palette) return document.createElement('canvas');
+    const cols = rows[0].replace(/ /g,'').length;
+    const numRows = rows.length;
+    const px = Math.floor(size / Math.max(cols, numRows));
+    const canvas = document.createElement('canvas');
+    canvas.width  = cols   * px;
+    canvas.height = numRows * px;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    rows.forEach((row, y) => {
+      const cleanRow = row.replace(/ /g,'');
+      for (let x = 0; x < cleanRow.length; x++) {
+        const ch = cleanRow[x];
+        const col = palette[ch];
+        if (!col || col === 'transparent') continue;
+        ctx.fillStyle = col;
+        ctx.fillRect(x * px, y * px, px, px);
+      }
+    });
+    canvas.style.imageRendering = 'pixelated';
+    canvas.style.imageRendering = 'crisp-edges';
+    return canvas;
+  }
   const STATS = ['Wisdom', 'Chaos', 'Patience', 'Snark', 'Vibes'];
   const STAT_COLORS = ['#7ec8e3','#ff7f5c','#b8f5a0','#ffb347','#c8a8f0'];
 
@@ -610,11 +1198,17 @@
       if(!raw) return null;
       const b = JSON.parse(raw);
       if(b && b.hatched) {
-        // 重新计算物种保证一致性（但是存储里物种可能丢失，从种子再取一次）
-        const seed = getSeed();
-        const rng = mulberry32(seed);
-        const freshSpecies = SPECIES[Math.floor(rng() * SPECIES.length)];
-        b.species = freshSpecies;
+        // Trust the stored species — it was set at hatch time and must not drift.
+        // Only fall back to seed-based generation if species is somehow missing.
+        if(!b.species || !b.species.emoji) {
+          const seed = getSeed();
+          const rng = mulberry32(seed);
+          b.species = SPECIES[Math.floor(rng() * SPECIES.length)];
+        }
+        // Make sure species object is a full reference from SPECIES array
+        // (in case emoji changed between versions)
+        const match = SPECIES.find(s => s.name === b.species.name);
+        if(match) b.species = match;
         if(!b.stats) b.stats = {};
         STATS.forEach(s => { if(b.stats[s]===undefined) b.stats[s]=50; });
         return b;
@@ -641,37 +1235,43 @@
     document.getElementById('speechBubble').innerText = '💬 Hatch me first!';
   }
 
-  // 孵化并切换界面
+  // Hatch — instant, no 🐣
   function hatchNewBuddy() {
     if(hatched) return;
     buddy = createNewBuddy();
     hatched = true;
     persistBuddy();
-    // 播放动画 蛋 -> 破壳
-    const eggDiv = document.getElementById('eggEmoji');
-    eggDiv.style.animation = 'none';
-    eggDiv.style.transform = 'scale(1.2)';
-    setTimeout(() => {
-      eggDiv.textContent = '🐣';
-      eggDiv.style.transform = '';
-    }, 120);
-    setTimeout(() => {
-      // 切换到宠物界面
-      document.getElementById('eggScreen').style.display = 'none';
-      document.getElementById('petScreen').style.display = 'flex';
-      document.getElementById('endModal').style.display = 'none';
-      renderPetUI();
-      spawnHearts(8);
-      animatePet('happy');
-      setBubble(`✨ A wild ${buddy.species.name} appears! I'm ${buddy.name}! ✨`);
-    }, 800);
+    markSeen(buddy.species.name);
+    document.getElementById('eggScreen').style.display = 'none';
+    document.getElementById('petScreen').style.display = 'flex';
+    document.getElementById('endModal').style.display = 'none';
+    renderPetUI();
+    spawnHearts(8);
+    animatePet('happy');
+    setBubble(`✨ A wild ${buddy.species.name} appears! I'm ${buddy.name}! ✨`);
+  }
+
+  // Render pixel art or emoji into the pet display
+  function renderPetDisplay(sp) {
+    const container = document.getElementById('pet-emoji');
+    container.innerHTML = '';
+    if (sp.pixel) {
+      const canvas = renderPixelArt(sp.pixel, 88);
+      canvas.style.animation = 'petIdle 3.5s infinite ease-in-out';
+      canvas.style.cursor = 'pointer';
+      container.appendChild(canvas);
+      container.style.fontSize = '';
+    } else {
+      container.textContent = sp.emoji;
+      container.style.fontSize = '96px';
+    }
   }
 
   // 渲染全部宠物UI
   function renderPetUI() {
     if(!buddy) return;
     const sp = buddy.species;
-    document.getElementById('pet-emoji').textContent = sp.emoji;
+    renderPetDisplay(sp);
     document.getElementById('pet-name-display').textContent = buddy.name;
     const rb = document.getElementById('raritySpan');
     rb.textContent = sp.rarity.toUpperCase();
@@ -715,22 +1315,45 @@
 
   function triggerEnd(type) {
     if(currentEndType) return;
-    currentEndType = type;
-    // 隐藏宠物主界面
-    document.getElementById('petScreen').style.display = 'none';
-    const endModal = document.getElementById('endModal');
-    endModal.style.display = 'flex';
     if(type === 'free') {
-      document.getElementById('endFreeScreen').style.display = 'flex';
-      document.getElementById('endLostScreen').style.display = 'none';
-      document.getElementById('freeEmoji').textContent = buddy.species.emoji;
-      document.getElementById('freeMessage').innerHTML = `${buddy.name} the ${buddy.species.name} reached 100 in a stat! <br>They flew away to a magical place. 🌈`;
+      showFreeBanner();
     } else {
+      currentEndType = 'lost';
+      document.getElementById('petScreen').style.display = 'none';
+      document.getElementById('endModal').style.display = 'flex';
       document.getElementById('endFreeScreen').style.display = 'none';
       document.getElementById('endLostScreen').style.display = 'flex';
-      document.getElementById('lostEmoji').textContent = buddy.species.emoji;
+      // Render pixel art or emoji for lost screen
+      const lostEl = document.getElementById('lostEmoji');
+      lostEl.innerHTML = '';
+      if (buddy.species.pixel) {
+        lostEl.appendChild(renderPixelArt(buddy.species.pixel, 68));
+      } else {
+        lostEl.textContent = buddy.species.emoji || '💔';
+      }
       document.getElementById('lostMessage').innerHTML = `${buddy.name} the ${buddy.species.name} got too sad and left... 💔`;
     }
+  }
+
+  function showFreeBanner() {
+    const banner = document.getElementById('freeBanner');
+    if(!banner) return;
+    // Show pet emoji via renderPixelArt if pixel species
+    const emojiEl = document.getElementById('freeBannerEmoji');
+    emojiEl.innerHTML = '';
+    if (buddy.species.pixel) {
+      emojiEl.appendChild(renderPixelArt(buddy.species.pixel, 52));
+    } else {
+      emojiEl.textContent = buddy.species.emoji || '✨';
+    }
+    document.getElementById('freeBannerMsg').textContent =
+      `${buddy.name} the ${buddy.species.name}'s stats are overflowing with joy! Set them free into the world, or keep going?`;
+    banner.style.display = 'flex';
+    // Scroll to banner immediately so player sees it
+    setTimeout(() => banner.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+    // Flash the pet too
+    spawnHearts(6);
+    animatePet('happy');
   }
 
   // 动作通用
@@ -810,7 +1433,7 @@
       if(provider === 'gemini') {
         url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`;
         opts = { method:'POST', headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({ system_instruction:{parts:[{text:systemPrompt}]}, contents:[{role:'user',parts:[{text:msg}]}], generationConfig:{maxOutputTokens:280, responseMimeType:'application/json'} }) };
+          body: JSON.stringify({ system_instruction:{parts:[{text:systemPrompt}]}, contents:[{role:'user',parts:[{text:msg}]}], generationConfig:{maxOutputTokens:280} }) };
       } else if(provider === 'deepseek') {
         url = 'https://api.deepseek.com/v1/chat/completions';
         opts = { method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+apiKey},
@@ -868,6 +1491,135 @@
   refreshApiStatus();
 
   // 事件绑定
+  // ── Pet Library ──
+  const RARITY_ORDER = ['common','rare','epic','legendary'];
+  const RARITY_COLORS = {common:'#8a7a72',rare:'#2a7a9a',epic:'#6a2a9a',legendary:'#b07800'};
+  const RARITY_BG     = {common:'#e8e0da',rare:'#cce8f4',epic:'#e8d4f8',legendary:'#fff0a0'};
+
+  function isUnlocked(sp) {
+    // Commons are always visible. Others only revealed if you've hatched them.
+    if (sp.rarity === 'common') return true;
+    try {
+      const seen = JSON.parse(localStorage.getItem('buddy-seen') || '[]');
+      return seen.includes(sp.name);
+    } catch(e) { return false; }
+  }
+
+  function markSeen(name) {
+    try {
+      const seen = JSON.parse(localStorage.getItem('buddy-seen') || '[]');
+      if (!seen.includes(name)) { seen.push(name); localStorage.setItem('buddy-seen', JSON.stringify(seen)); }
+    } catch(e) {}
+  }
+
+  function buildLibrary() {
+    const grid = document.getElementById('libraryGrid');
+    grid.innerHTML = '';
+
+    // Show count header
+    const seen = (() => { try { return JSON.parse(localStorage.getItem('buddy-seen')||'[]'); } catch(e){return[];} })();
+    const totalUnlocked = SPECIES.filter(s=>isUnlocked(s)).length;
+    document.getElementById('libraryCount').textContent =
+      `${totalUnlocked} / ${SPECIES.length} discovered`;
+
+    const sorted = [...SPECIES].sort((a,b)=>RARITY_ORDER.indexOf(a.rarity)-RARITY_ORDER.indexOf(b.rarity));
+
+    sorted.forEach(sp => {
+      const unlocked = isUnlocked(sp);
+      const card = document.createElement('div');
+
+      if (unlocked) {
+        // ── UNLOCKED card ──
+        card.style.cssText = `background:#fffaf5;border-radius:18px;padding:12px 10px 10px;
+          display:flex;flex-direction:column;align-items:center;gap:6px;
+          border:1.5px solid ${RARITY_BG[sp.rarity]};position:relative;`;
+
+        // art
+        const artWrap = document.createElement('div');
+        artWrap.style.cssText = 'width:56px;height:56px;display:flex;align-items:center;justify-content:center;';
+        const cv = renderPixelArt(sp.pixel, 52);
+        cv.style.display = 'block';
+        artWrap.appendChild(cv);
+        card.appendChild(artWrap);
+
+        // name
+        const nameEl = document.createElement('div');
+        nameEl.style.cssText = "font-family:'Fredoka One',cursive;font-size:0.9rem;color:#3a2e2e;";
+        nameEl.textContent = sp.name;
+        card.appendChild(nameEl);
+
+        // rarity badge
+        const badge = document.createElement('span');
+        badge.style.cssText = `font-size:0.58rem;font-weight:800;letter-spacing:.06em;padding:2px 9px;
+          border-radius:20px;text-transform:uppercase;
+          background:${RARITY_BG[sp.rarity]};color:${RARITY_COLORS[sp.rarity]};`;
+        badge.textContent = sp.rarity;
+        card.appendChild(badge);
+
+        // "met" check
+        if (seen.includes(sp.name)) {
+          const tick = document.createElement('div');
+          tick.style.cssText = 'position:absolute;top:6px;right:8px;font-size:0.7rem;color:#60c840;font-weight:800;';
+          tick.textContent = '✓';
+          card.appendChild(tick);
+        }
+
+      } else {
+        // ── LOCKED card — mosaic, no spoilers ──
+        const hue = {rare:200, epic:280, legendary:45}[sp.rarity] || 30;
+        card.style.cssText = `background:#f5f0ee;border-radius:18px;padding:12px 10px 10px;
+          display:flex;flex-direction:column;align-items:center;gap:6px;
+          border:1.5px dashed #ddd0c8;position:relative;opacity:0.82;`;
+
+        // mosaic art
+        const artWrap = document.createElement('div');
+        artWrap.style.cssText = 'width:56px;height:56px;position:relative;display:flex;align-items:center;justify-content:center;';
+        const cv = document.createElement('canvas');
+        cv.width = 10; cv.height = 10;
+        const ctx = cv.getContext('2d');
+        // Use actual species pixel map but smear into 10x10 blobs — tantalising but unreadable
+        for (let y=0;y<10;y++) for (let x=0;x<10;x++) {
+          const l = 48 + Math.sin(x*0.9+y*1.4+hue*0.01)*18 + Math.cos(x*1.7+y*0.6)*12;
+          const s = 35 + Math.cos(x+y)*12;
+          ctx.fillStyle = `hsl(${hue+Math.sin(x+y)*15},${s}%,${l}%)`;
+          ctx.fillRect(x,y,1,1);
+        }
+        cv.style.cssText = 'width:52px;height:52px;image-rendering:pixelated;border-radius:8px;';
+        artWrap.appendChild(cv);
+        // lock icon
+        const lock = document.createElement('div');
+        lock.style.cssText = `position:absolute;font-size:1.2rem;
+          text-shadow:0 1px 3px rgba(0,0,0,0.25);`;
+        lock.textContent = '🔒';
+        artWrap.appendChild(lock);
+        card.appendChild(artWrap);
+
+        // mystery name
+        const nameEl = document.createElement('div');
+        nameEl.style.cssText = "font-family:'Fredoka One',cursive;font-size:0.9rem;color:#b09080;";
+        nameEl.textContent = '???';
+        card.appendChild(nameEl);
+
+        // rarity badge (show rarity as hint, but not name)
+        const badge = document.createElement('span');
+        badge.style.cssText = `font-size:0.58rem;font-weight:800;letter-spacing:.06em;padding:2px 9px;
+          border-radius:20px;text-transform:uppercase;
+          background:${RARITY_BG[sp.rarity]};color:${RARITY_COLORS[sp.rarity]};opacity:0.7;`;
+        badge.textContent = sp.rarity;
+        card.appendChild(badge);
+      }
+
+      grid.appendChild(card);
+    });
+  }
+  document.getElementById('closeLibrary').addEventListener('click', () => {
+    document.getElementById('libraryModal').style.display = 'none';
+  });
+  document.getElementById('libraryModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('libraryModal'))
+      document.getElementById('libraryModal').style.display = 'none';
+  });
+
   document.getElementById('eggEmoji').addEventListener('click', () => { if(!hatched) hatchNewBuddy(); });
   document.getElementById('petBtn').addEventListener('click', () => doAction('pet',5,'happy',REACTIONS.pet));
   document.getElementById('feedBtn').addEventListener('click', () => doAction('feed',4,'bounce',REACTIONS.feed));
@@ -889,6 +1641,30 @@
   });
   // reset buttons
   document.getElementById('resetFromFree').addEventListener('click', fullReset);
+  document.getElementById('btnSetFree').addEventListener('click', () => {
+    document.getElementById('freeBanner').style.display = 'none';
+    currentEndType = 'free';
+    document.getElementById('petScreen').style.display = 'none';
+    document.getElementById('endModal').style.display = 'flex';
+    document.getElementById('endFreeScreen').style.display = 'flex';
+    document.getElementById('endLostScreen').style.display = 'none';
+    const freeEl = document.getElementById('freeEmoji');
+    freeEl.innerHTML = '';
+    if (buddy.species.pixel) {
+      freeEl.appendChild(renderPixelArt(buddy.species.pixel, 68));
+    } else {
+      freeEl.textContent = buddy.species.emoji || '🌟';
+    }
+    document.getElementById('freeMessage').innerHTML =
+      `${buddy.name} the ${buddy.species.name} flew away to a magical place! 🌈<br>What a journey!`;
+  });
+  document.getElementById('btnKeepGoing').addEventListener('click', () => {
+    document.getElementById('freeBanner').style.display = 'none';
+    // Cap all maxed stats at 95 so game continues
+    STATS.forEach(s => { if(buddy.stats[s] >= 100) buddy.stats[s] = 95; });
+    persistBuddy(); renderStats();
+    setBubble(`Let's keep going!! 💪🎉`);
+  });
   document.getElementById('resetFromLost').addEventListener('click', fullReset);
 
   // 初始化: 检查是否已有存档且已孵化
@@ -900,6 +1676,7 @@
     document.getElementById('petScreen').style.display = 'flex';
     document.getElementById('endModal').style.display = 'none';
     renderPetUI();
+    markSeen(buddy.species.name);
     setBubble(`Welcome back! I'm ${buddy.name}~ 🎉`);
   } else {
     fullReset();
